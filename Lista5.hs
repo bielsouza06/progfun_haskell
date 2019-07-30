@@ -88,7 +88,26 @@ entrada n retorna 2n-}
 pot2 :: Int -> Int
 pot2 n = (iter n double) 1
 
+--Calcule a soma dos quadrados dos números naturais 1 até n usando map e foldr
+sumsqr :: Int -> Int
+sumsqr n = foldr (+) 0 $ map (^2) [1..n]
+
+{-Defina uma função que dê a soma dos quadrados dos inteiros positivos
+de uma lista de inteiros-}
+sumplus :: [Int] -> Int
+sumplus xs =  foldr (+) 0 $ map (^2) $ filter (>0) xs
+
+--Usando foldr defina as funções unzip, last e init
+
+last' :: [a] -> a
+last' = foldr1 (\_ n -> n)
 
 init' :: [a]->[a]
 init' xs = foldr1 (++) listanova
  where listanova = reverse (drop 1 (reverse (map (\x->[x]) xs)))
+
+{-Defina a função switchMap que aplica de forma alternada duas
+funções aos elementos de uma lista.-}
+
+switchMap :: (a->a) -> (a->a) -> [a] -> [a]
+switchMap f g ns = (map f) (map g ns)
