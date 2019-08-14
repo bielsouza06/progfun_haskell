@@ -84,3 +84,63 @@ Direita:
 (x:xs) ++ zs =           --(associação)
 (x:(xs++zs) =            --(++.2)
 (x:xs) =                 --(associação)
+
+--------------- 9.7 ------------------------
+reverse [] = []                     --(rev.1)
+reverse (x:xs) = reverse xs ++ [x]  --(rev.2)
+
+sum (reverse xs) = sum xs
+
+Caso Base: sum (reverse []) = sum []
+Hipótese Indutiva: sum (reverse xs) = sum xs
+Indução: sum (reverse (x:xs)) = sum (x:xs)
+
+Prova
+
+Caso Base
+Esquerda:
+sum (reverse [])
+sum [] =           --(rev.1)
+0 =                --(sum.1)
+Direita:
+sum []
+0 =                --(sum.1)
+
+Passo Indutivo
+Esquerda:
+sum (revese (x:xs)) = 
+x + sum (revese xs)   --(sum.2)
+x + sum xs            --(HI)
+Direita:
+sum xs =
+x + sum xs            --(sum.2)
+
+---------------------------------------
+length [] = 0                    --(leng.1)
+length (x:xs) = 1 + length xs    --(leng.2)
+
+length (reverse xs) = length xs
+
+Caso Base: length (reverse []) = length []
+Hipótese Indutiva: length (reverse xs) = length xs
+Indução: length (reverse (x:xs)) = length (x:xs)
+
+Prova
+
+Caso Base
+Esquerda:
+length (reverse []) =
+length [] =             --(rev.1)
+0 =                     --(leng.1)
+Direita:
+length [] = 
+0 =                     --(leng.1)
+
+Passo Indutivo
+Esquerda:
+length (reverse (x:xs)) =
+1 + length (reverse xs) =       --(leng.2)
+1 + lenght xs =                 --(HI)
+Direita:
+length (x:xs) =
+1 + length xs =                 --(leng.2)       
