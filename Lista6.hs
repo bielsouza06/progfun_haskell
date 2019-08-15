@@ -18,7 +18,7 @@ sum ys =         --(++.1)
 Direita: 
 sum [] + sum ys =
 0 + sum ys =     --(sum.1)
-sum ys =         --(aritmética)
+sum ys           --(aritmética)
 
 Passo Indutivo
 Esquerda:
@@ -30,7 +30,7 @@ Direita:
 sum (x:xs) + sum ys=
 x + sum xs + sum ys  --(sum.2)
 
---------9.6-----------
+---------------9.6-----------------
 xs ++ [] = xs              --(++.0)
 [] ++ ys = ys              --(++.1)
 (x:xs) ++ ys = x:(xs++ys)  --(++.2)
@@ -49,7 +49,7 @@ Caso Base
 Passo Indutivo:
 (x:xs) ++ [] = (x:xs)
 x:(xs++[]) =          --(++.1)
-(x:xs) = (x:xs)       --(HI)
+(x:xs)                --(HI)
 
 ---------------------------------------
 
@@ -64,12 +64,12 @@ Esquerda:
 [] ++ (ys ++ zs)
 [] ++ y:(ys++zs) =     --(++.2)
 [] ++ (y:ys) =         --(associação)
-(y:ys) =               --(++.1)
+(y:ys)                 --(++.1)
 Direita:
 ([] ++ ys) ++ zs
 ys ++ zs =             --(++.1)
 (y:(ys++zs) =          --(++.2)
-(y:ys) =               --(associação)
+(y:ys)                 --(associação)
 
 Passo Indutivo
 Esquerda:
@@ -77,13 +77,13 @@ Esquerda:
 (x:xs) ++ y:(ys++zs) =  --(++.2)
 (x:xs) ++ (y:ys) =      --(associação)
 (x:(xs++ys) =           --(++.2)
-(x:xs) =                --(associação)
+(x:xs)                  --(associação)
 Direita:
 ((x:xs) ++ ys) ++ zs
 (x:(xs++ys)) ++ zs =     --(++.2)
 (x:xs) ++ zs =           --(associação)
 (x:(xs++zs) =            --(++.2)
-(x:xs) =                 --(associação)
+(x:xs)                   --(associação)
 
 --------------- 9.7 ------------------------
 reverse [] = []                     --(rev.1)
@@ -101,19 +101,19 @@ Caso Base
 Esquerda:
 sum (reverse [])
 sum [] =           --(rev.1)
-0 =                --(sum.1)
+0                  --(sum.1)
 Direita:
 sum []
-0 =                --(sum.1)
+0                  --(sum.1)
 
 Passo Indutivo
 Esquerda:
 sum (revese (x:xs)) = 
-x + sum (revese xs)   --(sum.2)
-x + sum xs            --(HI)
+x + sum (revese xs) =   --(sum.2)
+x + sum xs              --(HI)
 Direita:
 sum xs =
-x + sum xs            --(sum.2)
+x + sum xs              --(sum.2)
 
 ---------------------------------------
 length [] = 0                    --(leng.1)
@@ -131,16 +131,16 @@ Caso Base
 Esquerda:
 length (reverse []) =
 length [] =             --(rev.1)
-0 =                     --(leng.1)
+0                       --(leng.1)
 Direita:
 length [] = 
-0 =                     --(leng.1)
+0                       --(leng.1)
 
 Passo Indutivo
 Esquerda:
 length (reverse (x:xs)) =
 1 + length (reverse xs) =       --(leng.2)
-1 + lenght xs =                 --(HI)
+1 + lenght xs                   --(HI)
 Direita:
 length (x:xs) =
-1 + length xs =                 --(leng.2)       
+1 + length xs                   --(leng.2)       
