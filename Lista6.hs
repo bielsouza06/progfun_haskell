@@ -144,3 +144,57 @@ length (reverse (x:xs)) =
 Direita:
 length (x:xs) =
 1 + length xs                   --(leng.2)       
+
+
+-------------------- 9.9 ---------------------
+zip _ [] = []                        --(zip.1)
+zip [] _ = []                        --(zip.2)
+zip (x:xs) (y:ys) = (x,y):zip xs ys  --(zip.3)
+
+unzip [] = ([],[])                   --(unz.1)
+unzip ((x,y):ps) = (x:xs, y:ys)      --(unz.2)
+ where (xs,ys) = unzip ps            --(unz.3)
+unzip
+
+fst (f,s) = f                        --(fst)
+snd (f,s) = s                        --(snd)
+
+Caso Base: zip (fst (unzip [])) (snd (unzip [])) = []
+Hipótese Indutiva: zip (fst (unzip ps)) (snd (unzip ps)) = ps
+Indução: zip (fst (unzip (p:ps))) (snd (unzip (p:ps))) = (p:ps)
+
+Prova
+Caso Base
+Trabalhando o lado Esquerdo:
+zip (fst (unzip [])) (snd (unzip [])) = []
+zip (fst ([],[])) (snd ([],[])) =  --(unz.1)
+zip [] [] =                        --(fst e snd)
+[]                                 --(zip.1)
+--Esquerdo == Direito                             
+
+Passo Indutivo
+Esquerda: 
+zip (fst (unzip (p:ps))) (snd (unzip (p:ps)))
+zip (fst (x:xs, y:ys)) (snd (x:xs, y:ys)) =      --(unz.2)
+zip (x:xs) (y:ys) =                              --(fst e snd)
+(x,y): zip xs ys  =                              --(zip.3)
+(p:ps)                                           --?? (associação) ??
+
+----------------------------------------------------
+Caso Base: unzip (zip [] []) = ([],[])
+Hipótese Indutiva: unzip (zip xs ys) = (xs,ys)
+Indução: unzip (zip (x:xs) (y:ys)) = (x:xs, y:ys)
+
+Prova
+Caso Base
+unzip (zip [] []) = ([],[])
+unzip [] =                  --(zip.1)
+([],[])                     --(unz.1)
+
+Passo Indutivo
+Esquerda:
+unzip (zip (x:xs) (y:ys)) = 
+unzip ((x,y): zip xs ys) =      --(zip.1)
+(x:xs, y:ys)                    --(unz.2)
+Direta:
+(x:xs, y:ys)
