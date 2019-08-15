@@ -54,7 +54,7 @@ x:(xs++[]) =          --(++.1)
 ---------------------------------------
 
 Caso Base: [] ++ (ys ++ zs) = ([] ++ ys) ++ zs
-Hipótese Indutiva : xs ++ (ys ++ zs) = (xs ++ ys) ++ zs
+Hipótese Indutiva: xs ++ (ys ++ zs) = (xs ++ ys) ++ zs
 Indução: (x:xs) ++ (ys ++ zs) = ((x:xs) ++ ys) ++ zs
 
 Prova
@@ -198,3 +198,28 @@ unzip ((x,y): zip xs ys) =      --(zip.1)
 (x:xs, y:ys)                    --(unz.2)
 Direta:
 (x:xs, y:ys)
+
+---------------------- 9.11 ----------------------------
+--Teste - 9.5
+prop_Sum :: [Int] -> [Int] -> Bool
+prop_Sum xs ys = sum (xs++ys) == sum xs + sum ys
+
+--Teste - 9.6
+prop_Conc :: [Int] -> [Int] -> [Int] -> Bool
+prop_Conc xs ys zs = xs ++ (ys ++ zs) == (xs ++ ys) ++ zs
+
+--Teste - 9.7
+prop_Sum_Rev :: [Int] -> Bool
+prop_Sum_Rev xs = sum (reverse xs) == sum xs
+
+prop_Len_Rev :: [Int] -> Bool
+prop_Len_Rev xs = length (reverse xs) == length xs
+
+--Teste - 9.9
+prop_Zip :: [(Int,Int)] -> Bool
+prop_Zip ps = zip (fst (unzip ps)) (snd (unzip ps)) == ps
+
+prop_Un :: [Int] -> [Int] -> Bool
+prop_Un xs ys = unzip (zip xs ys) == (xs,ys)
+
+--11.25, 11.26, 11.29, 11.32 e 11.33
