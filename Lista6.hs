@@ -19,6 +19,7 @@ Direita:
 sum [] + sum ys =
 0 + sum ys =     --(sum.1)
 sum ys           --(aritmética)
+--Esquerdo == Direito 
 
 Passo Indutivo
 Esquerda:
@@ -29,6 +30,7 @@ x + sum xs + sum ys  --(HI)
 Direita:
 sum (x:xs) + sum ys=
 x + sum xs + sum ys  --(sum.2)
+--Esquerdo == Direito 
 
 ---------------9.6-----------------
 xs ++ [] = xs              --(++.0)
@@ -45,12 +47,13 @@ Provas
 Caso Base
 [] ++ [] = []   
 [] = []               --(++.1)
+--Esquerdo == Direito 
 
 Passo Indutivo:
 (x:xs) ++ [] = (x:xs)
 x:(xs++[]) =          --(++.1)
 (x:xs)                --(HI)
-
+--Esquerdo == Direito 
 ---------------------------------------
 
 Caso Base: [] ++ (ys ++ zs) = ([] ++ ys) ++ zs
@@ -70,6 +73,7 @@ Direita:
 ys ++ zs =             --(++.1)
 (y:(ys++zs) =          --(++.2)
 (y:ys)                 --(associação)
+--Esquerdo == Direito 
 
 Passo Indutivo
 Esquerda:
@@ -84,6 +88,7 @@ Direita:
 (x:xs) ++ zs =           --(associação)
 (x:(xs++zs) =            --(++.2)
 (x:xs)                   --(associação)
+--Esquerdo == Direito 
 
 --------------- 9.7 ------------------------
 reverse [] = []                     --(rev.1)
@@ -105,6 +110,7 @@ sum [] =           --(rev.1)
 Direita:
 sum []
 0                  --(sum.1)
+--Esquerdo == Direito 
 
 Passo Indutivo
 Esquerda:
@@ -114,6 +120,7 @@ x + sum xs              --(HI)
 Direita:
 sum xs =
 x + sum xs              --(sum.2)
+--Esquerdo == Direito 
 
 ---------------------------------------
 length [] = 0                    --(leng.1)
@@ -135,6 +142,7 @@ length [] =             --(rev.1)
 Direita:
 length [] = 
 0                       --(leng.1)
+--Esquerdo == Direito 
 
 Passo Indutivo
 Esquerda:
@@ -144,7 +152,7 @@ length (reverse (x:xs)) =
 Direita:
 length (x:xs) =
 1 + length xs                   --(leng.2)       
-
+--Esquerdo == Direito 
 
 -------------------- 9.9 ---------------------
 zip _ [] = []                        --(zip.1)
@@ -178,8 +186,10 @@ zip (fst (unzip (p:ps))) (snd (unzip (p:ps)))
 zip (fst (x:xs, y:ys)) (snd (x:xs, y:ys)) =      --(unz.2)
 zip (x:xs) (y:ys) =                              --(fst e snd)
 (x,y): zip xs ys  =                              --(zip.3)
-(p:ps)                                           --?? (associação) ??
-
+(p:ps)                                           --(associação)??
+Direita: 
+(p:ps)
+--Esquerdo == Direito 
 ----------------------------------------------------
 Caso Base: unzip (zip [] []) = ([],[])
 Hipótese Indutiva: unzip (zip xs ys) = (xs,ys)
@@ -190,6 +200,7 @@ Caso Base
 unzip (zip [] []) = ([],[])
 unzip [] =                  --(zip.1)
 ([],[])                     --(unz.1)
+--Esquerdo == Direito 
 
 Passo Indutivo
 Esquerda:
@@ -198,7 +209,7 @@ unzip ((x,y): zip xs ys) =      --(zip.1)
 (x:xs, y:ys)                    --(unz.2)
 Direta:
 (x:xs, y:ys)
-
+--Esquerdo == Direito 
 ---------------------- 9.11 ----------------------------
 --Teste - 9.5
 prop_Sum :: [Int] -> [Int] -> Bool
@@ -221,5 +232,3 @@ prop_Zip ps = zip (fst (unzip ps)) (snd (unzip ps)) == ps
 
 prop_Un :: [Int] -> [Int] -> Bool
 prop_Un xs ys = unzip (zip xs ys) == (xs,ys)
-
---11.25, 11.26, 11.29, 11.32 e 11.33
