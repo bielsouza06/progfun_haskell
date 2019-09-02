@@ -1,7 +1,7 @@
 import Data.List
 import Data.Char
 --5.6
-data Market a = Produto String Float
+data Market = Produto String Float
  deriving (Show, Ord, Eq)
 --definindo o banco de produtos como uma lista
 data Lista a = Vazia | Celula a (Lista a)
@@ -14,13 +14,32 @@ produc Vazia pr = error "produto nao encontrado"
 produc (Celula (a, b) cs) pr
  |a == pr = b
  |otherwise = produc cs pr
- 
+
 --14.1
-data Estoque a = Item String Float 
+type Nome = String
+type Livro = String
+data Pessoa = Pessoa Nome Livro
+
+--14.2
+data Estoque = Livro String | CD String | Videos String
  deriving (Show, Ord, Eq)
 
+data Artistas = Autor String [Estoque] | Banda String [Estoque]
+ deriving (Show, Ord, Eq)
 
- --Exercicios IO
+{-14.3
+eval (Lit 67) = 67
+
+eval (Add (Sub (Lit 3) (Lit 1)) (Lit 3))
+eval  ((Lit 3) - (Lit 1)) + (Lit 3)
+eval  (3 - 1) + 3   =>   2 + 3 => 5
+
+show (Add (Lit 67) (Lit (-34)))
+show ((Lit 67) + (Lit (-34)))
+show (67 + (-34))
+   =>  "33"
+-}
+ ------------Exercicios IO-------------
 getInt :: IO Int
 getInt = do num <- getLine
             return (read num :: Int)
@@ -105,7 +124,7 @@ readnum acm = do
               then putStrLn $ show (sort acm)
               else readnum (acm ++ [lin])
 
---8.15 - Verifica se é um palindromo, sem considerar espaços e pontuações.
+--8.15 - Verifica se é um palindromo, sem considerar maiusculas, espaços e pontuações.
 palindrome :: IO ()
 palindrome = do lin <-getLine
                 let clean = map toLower (filter isLetter lin)
